@@ -744,12 +744,87 @@ export interface ApiGuitarraGuitarra extends Schema.CollectionType {
   };
 }
 
+export interface ApiLaptopLaptop extends Schema.CollectionType {
+  collectionName: 'laptops';
+  info: {
+    singularName: 'laptop';
+    pluralName: 'laptops';
+    displayName: 'Laptops';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    cpu: Attribute.String;
+    display: Attribute.String;
+    ram: Attribute.String;
+    gpu: Attribute.String;
+    precio: Attribute.Integer;
+    imagen: Attribute.Media & Attribute.Required;
+    url: Attribute.UID<'api::laptop.laptop', 'titulo'> & Attribute.Required;
+    categoria: Attribute.String;
+    procesador: Attribute.String;
+    marca: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::laptop.laptop',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::laptop.laptop',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLaptopPostLaptopPost extends Schema.CollectionType {
+  collectionName: 'laptop_posts';
+  info: {
+    singularName: 'laptop-post';
+    pluralName: 'laptop-posts';
+    displayName: 'Laptop-Posts';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    contenido: Attribute.Text;
+    imagen: Attribute.Media & Attribute.Required;
+    url: Attribute.UID<'api::laptop-post.laptop-post', 'titulo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::laptop-post.laptop-post',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::laptop-post.laptop-post',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Schema.CollectionType {
   collectionName: 'posts';
   info: {
     singularName: 'post';
     pluralName: 'posts';
-    displayName: 'Post';
+    displayName: 'Posts';
     description: '';
   };
   options: {
@@ -788,6 +863,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::curso.curso': ApiCursoCurso;
       'api::guitarra.guitarra': ApiGuitarraGuitarra;
+      'api::laptop.laptop': ApiLaptopLaptop;
+      'api::laptop-post.laptop-post': ApiLaptopPostLaptopPost;
       'api::post.post': ApiPostPost;
     }
   }

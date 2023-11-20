@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "posts",
+  "collectionName": "laptop_posts",
   "info": {
-    "singularName": "post",
-    "pluralName": "posts",
-    "displayName": "Posts",
+    "singularName": "laptop-post",
+    "pluralName": "laptop-posts",
+    "displayName": "Laptop-Posts",
     "description": ""
   },
   "options": {
@@ -13,8 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "titulo": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "contenido": {
       "type": "text"
@@ -22,14 +21,15 @@
     "imagen": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "url": {
       "type": "uid",
-      "targetField": "titulo"
+      "targetField": "titulo",
+      "required": false
     }
   }
 }
